@@ -86,6 +86,75 @@
       </div>
       {{p .Description}}
 
+      {{range .Services}}
+        <h3 id="{{.FullName}}">{{.Name}}</h3>
+        {{p .Description}}
+        <table class="enum-table">
+          <thead>
+            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            {{range .Methods}}
+              <tr>
+                <td>{{.Name}}</td>
+                <td><a href="#{{.RequestFullType}}">{{.RequestLongType}}</a>{{if .RequestStreaming}} stream{{end}}</td>
+                <td><a href="#{{.ResponseFullType}}">{{.ResponseLongType}}</a>{{if .ResponseStreaming}} stream{{end}}</td>
+                <td><p>{{.Description}}</p></td>
+              </tr>
+            {{end}}
+          </tbody>
+        </table>
+
+        {{$service := .}}
+        {{- range .MethodOptions}}
+          {{$option := .}}
+          {{if eq . "google.api.http"}}
+          <h4>Methods with HTTP bindings</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Method</td>
+                <td>Pattern</td>
+                <td>Body</td>
+              </tr>
+            </thead>
+            <tbody>
+            {{range $service.MethodsWithOption .}}
+              {{$name := .Name}}
+              {{range (.Option $option).Rules}}
+              <tr>
+                <td>{{$name}}</td>
+                <td>{{.Method}}</td>
+                <td>{{.Pattern}}</td>
+                <td>{{.Body}}</td>
+              </tr>
+              {{end}}
+            {{end}}
+            </tbody>
+          </table>
+          {{else}}
+          <h4>Methods with {{.}} option</h4>
+          <table>
+            <thead>
+              <tr>
+                <td>Method Name</td>
+                <td>Option</td>
+              </tr>
+            </thead>
+            <tbody>
+            {{range $service.MethodsWithOption .}}
+              <tr>
+                <td>{{.Name}}</td>
+                <td><p>{{ printf "%+v" (.Option $option)}}</p></td>
+              </tr>
+            {{end}}
+            </tbody>
+          </table>
+          {{end}}
+        {{end -}}
+      {{end}}
+
       {{range .Messages}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>
         {{p .Description}}
@@ -216,74 +285,7 @@
         </table>
       {{end}}
 
-      {{range .Services}}
-        <h3 id="{{.FullName}}">{{.Name}}</h3>
-        {{p .Description}}
-        <table class="enum-table">
-          <thead>
-            <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
-          </thead>
-          <tbody>
-            {{range .Methods}}
-              <tr>
-                <td>{{.Name}}</td>
-                <td><a href="#{{.RequestFullType}}">{{.RequestLongType}}</a>{{if .RequestStreaming}} stream{{end}}</td>
-                <td><a href="#{{.ResponseFullType}}">{{.ResponseLongType}}</a>{{if .ResponseStreaming}} stream{{end}}</td>
-                <td><p>{{.Description}}</p></td>
-              </tr>
-            {{end}}
-          </tbody>
-        </table>
 
-        {{$service := .}}
-        {{- range .MethodOptions}}
-          {{$option := .}}
-          {{if eq . "google.api.http"}}
-          <h4>Methods with HTTP bindings</h4>
-          <table>
-            <thead>
-              <tr>
-                <td>Method Name</td>
-                <td>Method</td>
-                <td>Pattern</td>
-                <td>Body</td>
-              </tr>
-            </thead>
-            <tbody>
-            {{range $service.MethodsWithOption .}}
-              {{$name := .Name}}
-              {{range (.Option $option).Rules}}
-              <tr>
-                <td>{{$name}}</td>
-                <td>{{.Method}}</td>
-                <td>{{.Pattern}}</td>
-                <td>{{.Body}}</td>
-              </tr>
-              {{end}}
-            {{end}}
-            </tbody>
-          </table>
-          {{else}}
-          <h4>Methods with {{.}} option</h4>
-          <table>
-            <thead>
-              <tr>
-                <td>Method Name</td>
-                <td>Option</td>
-              </tr>
-            </thead>
-            <tbody>
-            {{range $service.MethodsWithOption .}}
-              <tr>
-                <td>{{.Name}}</td>
-                <td><p>{{ printf "%+v" (.Option $option)}}</p></td>
-              </tr>
-            {{end}}
-            </tbody>
-          </table>
-          {{end}}
-        {{end -}}
-      {{end}}
     {{end}}
 
         <h2 id="scalar-value-types">Scalar Value Types</h2>

@@ -39,7 +39,7 @@
               <a href="#{{.Name}}"><h3>{{.Name}}</h3></a>
               <div class="file-content-container">
                 <div class="file-content">
-                  <h4>Services</h4>
+                  <a href="#{{.Name}}-services"><h4>Services</h4></a>
                   <ul>
                     {{range .Services}}
                       <li>
@@ -47,7 +47,7 @@
                       </li>
                     {{end}}
                   </ul>
-                  <h4>Messages</h4>
+                  <a href="#{{.Name}}-messages"><h4>Messages</h4></a>
                   <ul>
                     {{range .Messages}}
                       <li>
@@ -55,7 +55,7 @@
                       </li>
                     {{end}}
                   </ul>
-                  <h4>Enums</h4>
+                  <a href="#{{.Name}}-enums"><h4>Enums</h4></a>
                   <ul>
                     {{range .Enums}}
                       <li>
@@ -63,7 +63,7 @@
                       </li>
                     {{end}}
                   </ul>
-                  <h4>Extensions</h4>
+                  <a href="#{{.Name}}-extensions"><h4>Extensions</h4></a>
                   <ul>
                     {{range .Extensions}}
                       <li>

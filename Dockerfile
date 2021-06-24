@@ -1,6 +1,6 @@
 FROM pseudomuto/protoc-gen-doc
 
-COPY templates/custom-markdown.tmpl /templates/custom-markdown.tmpl
+COPY templates /templates
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

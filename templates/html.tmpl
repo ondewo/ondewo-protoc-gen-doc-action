@@ -26,7 +26,7 @@
 
     <nav class="nav-side">
         <header id="nav-header">
-            <h1 id="title">Protocol Documentation</h1>
+            <h1>Protocol Documentation</h1>
         </header>
 
         <div id="toc-container">
@@ -34,7 +34,7 @@
           <div id="toc">
             {{range .Files}}
               {{$file_name := .Name}}
-              <a href="#{{.Name}}"><h3>{{.Name}}</h3></a>
+              <h3><a href="#{{.Name}}">{{.Name}}</a></h3>
               <div class="file-content-container">
                 <div class="file-content">
                   <a href="#{{.Name}}-services"><h4>Services</h4></a>
@@ -78,12 +78,12 @@
 
     </nav>
 
-    <section class="content-wrap">
+    <section id="top" class="content-wrap">
 
     {{range .Files}}
       {{$file_name := .Name}}
       <div class="file-heading">
-        <h2 id="{{.Name}}">{{.Name}}</h2><a href="#title">Top</a>
+        <h2 id="{{.Name}}">{{.Name}}</h2><a href="#top">Top</a>
       </div>
       {{p .Description}}
 

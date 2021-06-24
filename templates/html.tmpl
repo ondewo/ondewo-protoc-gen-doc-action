@@ -9,13 +9,18 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-      $( function() {
-        $( "#toc" ).accordion({
+      $(function() {
+        $("#toc").accordion({
           active: false,
           collapsible: true,
           heightStyle: "content",
         });
-      } );
+        $(".file-content").accordion({
+          active: false,
+          collapsible: true,
+          heightStyle: "content",
+        });
+      });
     </script>
   </head>
 
@@ -32,8 +37,8 @@
             {{range .Files}}
               {{$file_name := .Name}}
               <a href="#{{.Name}}"><h3>{{.Name}}</h3></a>
-              <div class="file-content">
-                <div class="services">
+              <div class="file-content-container">
+                <div class="file-content">
                   <h4>Services</h4>
                   <ul>
                     {{range .Services}}
@@ -42,8 +47,6 @@
                       </li>
                     {{end}}
                   </ul>
-                </div>
-                <div class="messages">
                   <h4>Messages</h4>
                   <ul>
                     {{range .Messages}}
@@ -52,8 +55,6 @@
                       </li>
                     {{end}}
                   </ul>
-                </div>
-                <div class="enums">
                   <h4>Enums</h4>
                   <ul>
                     {{range .Enums}}
@@ -62,8 +63,6 @@
                       </li>
                     {{end}}
                   </ul>
-                </div>
-                <div class="extensions">
                   <h4>Extensions</h4>
                   <ul>
                     {{range .Extensions}}

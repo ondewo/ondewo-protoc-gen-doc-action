@@ -7,16 +7,11 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:400,700,400italic"/>
     <link rel="stylesheet" type="text/css" href="style.css"/>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
       $(function() {
         $("#toc > li > a").click(function() {
           $(this).toggleClass("active");
           $(this).next(".file-content").slideToggle();
-        });
-        $(".file-content").accordion({
-          collapsible: true,
-          heightStyle: "content",
         });
       });
     </script>
@@ -96,7 +91,7 @@
       {{p .Description}}
 
       {{if .HasServices}}
-      <h3 id="#{{.Name}}-services">Services</h3>
+      <h3 id="{{.Name}}-services">Services</h3>
       {{range .Services}}
         <h3 id="{{.FullName}}">{{.Name}}</h3>
         {{p .Description}}
@@ -168,7 +163,7 @@
       {{end}}
 
       {{if .HasMessages}}
-      <h3 id="#{{.Name}}-messages">Messages</h3>
+      <h3 id="{{.Name}}-messages">Messages</h3>
       {{range .Messages}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>
         {{p .Description}}
@@ -262,7 +257,7 @@
       {{end}}
 
       {{if .HasEnums}}
-      <h3 id="#{{.Name}}-enums">Enums</h3>
+      <h3 id="{{.Name}}-enums">Enums</h3>
       {{range .Enums}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>
         {{p .Description}}

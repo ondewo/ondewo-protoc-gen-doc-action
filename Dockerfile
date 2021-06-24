@@ -1,7 +1,6 @@
 FROM pseudomuto/protoc-gen-doc
 
-RUN sleep 1h
-COPY resources/custom-markdown.tmpl ${GITHUB_WORKSPACE}/resources/custom-markdown.tmpl
+COPY templates/custom-markdown.tmpl /templates/custom-markdown.tmpl
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 

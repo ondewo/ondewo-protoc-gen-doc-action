@@ -11,7 +11,8 @@
     <script>
       $(function() {
         $("#toc li").click(function() {
-          $(this).find(".file-content").toggle();
+          $(this).toggleClass("active");
+          $(this).next(".file-content").slideToggle();
         });
         $(".file-content").accordion({
           collapsible: true,
@@ -36,6 +37,7 @@
               <li>
                 <a href="#{{.Name}}"><h3>{{.Name}}</h3></a>
                 <div class="file-content">
+                  {{if .HasServices}}
                   <a href="#{{.Name}}-services"><h4>Services</h4></a>
                   <ul>
                     {{range .Services}}
@@ -44,6 +46,8 @@
                       </li>
                     {{end}}
                   </ul>
+                  {{end}}
+                  {{if .HasMessages}}
                   <a href="#{{.Name}}-messages"><h4>Messages</h4></a>
                   <ul>
                     {{range .Messages}}
@@ -52,6 +56,8 @@
                       </li>
                     {{end}}
                   </ul>
+                  {{end}}
+                  {{if .HasEnums}}
                   <a href="#{{.Name}}-enums"><h4>Enums</h4></a>
                   <ul>
                     {{range .Enums}}
@@ -60,6 +66,8 @@
                       </li>
                     {{end}}
                   </ul>
+                  {{end}}
+                  {{if .HasExtensions}}
                   <a href="#{{.Name}}-extensions"><h4>Extensions</h4></a>
                   <ul>
                     {{range .Extensions}}
@@ -68,6 +76,7 @@
                       </li>
                     {{end}}
                   </ul>
+                  {{end}}
                 </div>
               </li>
             {{end}}
@@ -86,6 +95,8 @@
       </div>
       {{p .Description}}
 
+      {{if .HasServices}}
+      <h3 id="#{{.Name}}-services">Services</h3>
       {{range .Services}}
         <h3 id="{{.FullName}}">{{.Name}}</h3>
         {{p .Description}}
@@ -154,7 +165,10 @@
           {{end}}
         {{end -}}
       {{end}}
+      {{end}}
 
+      {{if .HasMessages}}
+      <h3 id="#{{.Name}}-messages">Messages</h3>
       {{range .Messages}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>
         {{p .Description}}
@@ -245,7 +259,10 @@
           </table>
         {{end}}
       {{end}}
+      {{end}}
 
+      {{if .HasEnums}}
+      <h3 id="#{{.Name}}-enums">Enums</h3>
       {{range .Enums}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>
         {{p .Description}}
@@ -263,6 +280,7 @@
             {{end}}
           </tbody>
         </table>
+      {{end}}
       {{end}}
 
       {{if .HasExtensions}}
@@ -284,7 +302,6 @@
           </tbody>
         </table>
       {{end}}
-
 
     {{end}}
 

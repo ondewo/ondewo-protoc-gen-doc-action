@@ -1,10 +1,14 @@
 name: 'Generate Documentation'
 description: 'Generate Documentation from *.proto files.'
 inputs:
+  format:
+    description: 'Documentation format. One of ["html", "md"].'
+    required: true
+    default: 'html'
   out-file:
     description: 'Documentation filename.'
     required: true
-    default: 'doc'
+    default: 'index'
 #outputs:
 #  time: # id of output
 #    description: 'The time we greeted you'
@@ -12,4 +16,5 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
+    - ${{ inputs.format }}
     - ${{ inputs.out-file }}

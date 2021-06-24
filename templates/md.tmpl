@@ -1,30 +1,38 @@
 # Protocol Documentation
-<a name="top"/>
+<a name="top"></a>
 
 ## Table of Contents
 {{range .Files}}
 {{$file_name := .Name}}- [{{.Name}}](#{{.Name}})
+  {{- if .Messages }}
   {{range .Messages}}  - [{{.LongName}}](#{{.FullName}})
   {{end}}
+  {{- end -}}
+  {{- if .Enums }}
   {{range .Enums}}  - [{{.LongName}}](#{{.FullName}})
   {{end}}
+  {{- end -}}
+  {{- if .Extensions }}
   {{range .Extensions}}  - [File-level Extensions](#{{$file_name}}-extensions)
   {{end}}
+  {{- end -}}
+  {{- if .Services }}
   {{range .Services}}  - [{{.Name}}](#{{.FullName}})
   {{end}}
+  {{- end -}}
 {{end}}
 - [Scalar Value Types](#scalar-value-types)
 
 {{range .Files}}
 {{$file_name := .Name}}
-<a name="{{.Name}}"/>
+<a name="{{.Name}}"></a>
 <p align="right"><a href="#top">Top</a></p>
 
 ## {{.Name}}
 {{.Description}}
 
 {{range .Messages}}
-<a name="{{.FullName}}"/>
+<a name="{{.FullName}}"></a>
 
 ### {{.LongName}}
 {{.Description}}
@@ -33,7 +41,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 {{range .Fields -}}
-  | {{.Name}} | [{{.LongType}}](#{{.FullType}}) | {{.Label}} | {{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}} |
+  | {{.Name}} | [{{.LongType}}](#{{.FullType}}) | {{.Label}} | {{if (index .Options "deprecated"|default false)}}**Deprecated.** {{end}}{{nobr .Description}}{{if .DefaultValue}} Default: {{.DefaultValue}}{{end}} |
 {{end}}
 {{end}}
 
@@ -48,7 +56,7 @@
 {{end}} <!-- end messages -->
 
 {{range .Enums}}
-<a name="{{.FullName}}"/>
+<a name="{{.FullName}}"></a>
 
 ### {{.LongName}}
 {{.Description}}
@@ -62,7 +70,7 @@
 {{end}} <!-- end enums -->
 
 {{if .HasExtensions}}
-<a name="{{$file_name}}-extensions"/>
+<a name="{{$file_name}}-extensions"></a>
 
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
@@ -73,7 +81,7 @@
 {{end}} <!-- end HasExtensions -->
 
 {{range .Services}}
-<a name="{{.FullName}}"/>
+<a name="{{.FullName}}"></a>
 
 ### {{.Name}}
 {{.Description}}
@@ -81,7 +89,7 @@
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 {{range .Methods -}}
-  | {{.Name}} | [{{.RequestLongType}}](#{{.RequestFullType}}) | [{{.ResponseLongType}}](#{{.RequestFullType}}) | {{nobr .Description}} |
+  | {{.Name}} | [{{.RequestLongType}}](#{{.RequestFullType}}){{if .RequestStreaming}} stream{{end}} | [{{.ResponseLongType}}](#{{.ResponseFullType}}){{if .ResponseStreaming}} stream{{end}} | {{nobr .Description}} |
 {{end}}
 {{end}} <!-- end services -->
 
@@ -89,8 +97,8 @@
 
 ## Scalar Value Types
 
-| .proto Type | Notes | C++ Type | Java Type | Python Type |
-| ----------- | ----- | -------- | --------- | ----------- |
+| .proto Type | Notes | C++ | Java | Python | Go | C# | PHP | Ruby |
+| ----------- | ----- | --- | ---- | ------ | -- | -- | --- | ---- |
 {{range .Scalars -}}
-  | <a name="{{.ProtoType}}" /> {{.ProtoType}} | {{.Notes}} | {{.CppType}} | {{.JavaType}} | {{.PythonType}} |
+  | <a name="{{.ProtoType}}" /> {{.ProtoType}} | {{.Notes}} | {{.CppType}} | {{.JavaType}} | {{.PythonType}} | {{.GoType}} | {{.CSharp}} | {{.PhpType}} | {{.RubyType}} |
 {{end}}

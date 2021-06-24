@@ -1,5 +1,7 @@
 #!/bin/sh -l
 
+sleep 1h
+
 cd ${GITHUB_WORKSPACE}
 OUTDIR=doc
 mkdir -p ${OUTDIR}

@@ -1,4 +1,7 @@
 #!/bin/sh -l
 
 cd ${GITHUB_WORKSPACE}
-protoc -I. -Igoogleapis --doc_opt=markdown,$1 --doc_out=doc $(find ondewo -name '*.proto' | sort)
+OUTDIR=doc
+mkdir -p ${OUTDIR}
+OUTFILE=${1}.md
+protoc -I. -Igoogleapis --doc_opt=markdown,${OUTFILE} --doc_out=${OUTDIR} $(find ondewo -name '*.proto' | sort)

@@ -2,7 +2,6 @@
 
 sleep 1h
 
-cd ${GITHUB_WORKSPACE}
 OUTDIR=doc
 mkdir -p ${OUTDIR}
 OUTFILE=${1}.md

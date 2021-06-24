@@ -1,0 +1,1 @@
+ls ${GITHUB_WORKSPACE}

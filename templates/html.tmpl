@@ -10,9 +10,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
       $(function() {
-        $("#toc").accordion({
-          collapsible: true,
-          heightStyle: "content",
+        $("#toc li").click(function() {
+          $(this).find(".file-content").toggle();
         });
         $(".file-content").accordion({
           collapsible: true,
@@ -31,11 +30,11 @@
 
         <div id="toc-container">
           <h2>Table of Contents</h2>
-          <div id="toc">
+          <ul id="toc">
             {{range .Files}}
               {{$file_name := .Name}}
-              <h3><a href="#{{.Name}}">{{.Name}}</a></h3>
-              <div class="file-content-container">
+              <li>
+                <a href="#{{.Name}}"><h3>{{.Name}}</h3></a>
                 <div class="file-content">
                   <a href="#{{.Name}}-services"><h4>Services</h4></a>
                   <ul>
@@ -70,10 +69,10 @@
                     {{end}}
                   </ul>
                 </div>
-              </div>
+              </li>
             {{end}}
-            <a href="#scalar-value-types"><h3>Scalar Value Types</h3></a>
-          </div>
+            <li><a href="#scalar-value-types"><h3>Scalar Value Types</h3></a></li>
+          </ul>
         </div>
 
     </nav>

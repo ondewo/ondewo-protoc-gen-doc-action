@@ -37,7 +37,7 @@
               <li>
                 <a href="#{{.Name}}"><h3>{{.Name}}</h3></a>
                 <div class="file-content">
-                  {{if .HasServices}}
+                  {{if .Services}}
                   <a href="#{{.Name}}-services"><h4>Services</h4></a>
                   <ul>
                     {{range .Services}}
@@ -47,7 +47,7 @@
                     {{end}}
                   </ul>
                   {{end}}
-                  {{if .HasMessages}}
+                  {{if .Messages}}
                   <a href="#{{.Name}}-messages"><h4>Messages</h4></a>
                   <ul>
                     {{range .Messages}}
@@ -57,7 +57,7 @@
                     {{end}}
                   </ul>
                   {{end}}
-                  {{if .HasEnums}}
+                  {{if .Enums}}
                   <a href="#{{.Name}}-enums"><h4>Enums</h4></a>
                   <ul>
                     {{range .Enums}}
@@ -95,7 +95,7 @@
       </div>
       {{p .Description}}
 
-      {{if .HasServices}}
+      {{if .Services}}
       <h3 id="#{{.Name}}-services">Services</h3>
       {{range .Services}}
         <h3 id="{{.FullName}}">{{.Name}}</h3>
@@ -167,7 +167,7 @@
       {{end}}
       {{end}}
 
-      {{if .HasMessages}}
+      {{if .Messages}}
       <h3 id="#{{.Name}}-messages">Messages</h3>
       {{range .Messages}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>
@@ -261,7 +261,7 @@
       {{end}}
       {{end}}
 
-      {{if .HasEnums}}
+      {{if .Enums}}
       <h3 id="#{{.Name}}-enums">Enums</h3>
       {{range .Enums}}
         <h3 id="{{.FullName}}">{{.LongName}}</h3>

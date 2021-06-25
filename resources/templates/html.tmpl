@@ -106,11 +106,11 @@
         {{p .Description}}
 
         {{if .Methods}}
-        <div id="{{$service_full_name}}-methods">Methods</div>
+        <div id="{{$service_full_name}}-methods" class="service-methods">Service Methods</div>
         {{range .Methods}}
           <h4 id="{{$service_full_name}}.{{.Name}}" class="title-badge method">{{.Name}}</h4>
 
-          <pre>rpc {{.Name}} ({{if .RequestStreaming}}stream {{end}}<a href="#{{.RequestFullType}}">{{.RequestLongType}}</a>) returns ({{if .ResponseStreaming}}stream {{end}}{{.ResponseLongType}})</pre>
+          <pre>rpc {{.Name}} ({{if .RequestStreaming}}stream {{end}}<a href="#{{.RequestFullType}}">{{.RequestLongType}}</a>) returns ({{if .ResponseStreaming}}stream {{end}}<a href="#{{.ResponseFullType}}">{{.ResponseLongType}})</a></pre>
 
           {{.Description}}
         {{end}}

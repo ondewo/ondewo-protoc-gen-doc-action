@@ -1,9 +1,14 @@
 # ondewo-protoc-gen-doc-action
+
 Github action to generate documentation from *.proto files.
 
 ## Inputs
 
-### `out-file`
+### `formats`
+
+Comma-separated list of documentation format. Default `html,md`.
+
+### `filename`
 
 The filename of the generated documentation. Default `doc`.
 
@@ -16,5 +21,6 @@ The filename of the generated documentation. Default `doc`.
 ```bash
 uses: ondewo/ondewo-protoc-gen-doc-action@main
 with:
-  out-file: nlu
+  format: html
+  filename: nlu
 ```

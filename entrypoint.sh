@@ -1,8 +1,20 @@
 #!/bin/sh -l
 
-FORMAT=${1}
-OUTFILE=${2}.${FORMAT}
 OUTDIR=doc
 mkdir -p ${OUTDIR}
 
-protoc -I. -Igoogleapis --doc_opt=/templates/${FORMAT}.tmpl,${OUTFILE} --doc_out=${OUTDIR} $(find ondewo -name '*.proto' | sort)
+# for each specified output format
+for format in $(echo ${1} | tr "," "\n"); do
+  if [ ${format} -e "html" ]; do
+    # copy resources for html format
+    cp -r /resources/html/* ${OUTDIR}
+  done
+
+  # generate the documentation in given format
+  protoc \
+    -I. \
+    -Igoogleapis \
+    --doc_opt=/resources/templates/${format}.tmpl,${2}.${format} \
+    --doc_out=${OUTDIR} \
+    $(find -name '*.proto' | sort)
+done

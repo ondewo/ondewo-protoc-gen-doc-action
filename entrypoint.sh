@@ -5,10 +5,10 @@ mkdir -p ${OUTDIR}
 
 # for each specified output format
 for format in $(echo ${1} | tr "," "\n"); do
-  if [ ${format} -e "html" ]; do
+  if [ "${format}" = "html" ]; then
     # copy resources for html format
     cp -r /resources/html/* ${OUTDIR}
-  done
+  fi
 
   # generate the documentation in given format
   protoc \

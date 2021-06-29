@@ -16,5 +16,5 @@ for format in $(echo ${1} | tr "," "\n"); do
     -Igoogleapis \
     --doc_opt=/resources/templates/${format}.tmpl,${2}.${format} \
     --doc_out=${OUTDIR} \
-    $(find -L ondewo -name '*.proto' | sort)
+    $(find ondewo -name '*.proto' | sort)
 done

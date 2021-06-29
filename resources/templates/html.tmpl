@@ -32,7 +32,7 @@
               <li>
                 <a href="#{{.Name}}">{{.Name}}</a>
                 <div class="file-content">
-                  {{if .HasServices}}
+                  {{if .Services}}
                   <a href="#{{.Name}}-services">Services</a>
                   <ul>
                   {{range .Services}}
@@ -50,7 +50,7 @@
                   {{end}}
                   </ul>
                   {{end}}
-                  {{if .HasMessages}}
+                  {{if .Messages}}
                   <a href="#{{.Name}}-messages">Messages</a>
                   <ul>
                     {{range .Messages}}
@@ -60,7 +60,7 @@
                     {{end}}
                   </ul>
                   {{end}}
-                  {{if .HasEnums}}
+                  {{if .Enums}}
                   <a href="#{{.Name}}-enums">Enums</a>
                   <ul>
                     {{range .Enums}}
@@ -98,7 +98,7 @@
       </div>
       {{p .Description}}
 
-      {{if .HasServices}}
+      {{if .Services}}
       <div id="{{.Name}}-services" class="object-category">Services</div>
       {{range .Services}}
         {{$service_full_name := .FullName}}
@@ -168,7 +168,7 @@
       {{end}}
       {{end}}
 
-      {{if .HasMessages}}
+      {{if .Messages}}
       <div id="{{.Name}}-messages" class="object-category">Messages</div>
       {{range .Messages}}
         <h3 id="{{.FullName}}" class="title-badge message">{{.LongName}}</h3>
@@ -262,7 +262,7 @@
       {{end}}
       {{end}}
 
-      {{if .HasEnums}}
+      {{if .Enums}}
       <div id="{{.Name}}-enums" class="object-category">Enums</div>
       {{range .Enums}}
         <h3 id="{{.FullName}}" class="title-badge enum">{{.LongName}}</h3>

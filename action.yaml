@@ -2,7 +2,7 @@ name: 'Generate Documentation'
 description: 'Generate Documentation from *.proto files.'
 inputs:
   formats:
-    description: 'Comma separated documentation formats.Available formats: html,md.'
+    description: 'Comma separated documentation formats. Available formats: html,md.'
     required: true
     default: 'html,md'
   filename:

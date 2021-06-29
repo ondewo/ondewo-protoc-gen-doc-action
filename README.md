@@ -10,7 +10,7 @@ Comma-separated list of documentation format. Default `html,md`.
 
 ### `filename`
 
-The filename of the generated documentation. Default `doc`.
+The filename of the generated documentation. Default `index`.
 
 ## Outputs
 

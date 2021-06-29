@@ -1,6 +1,6 @@
 #!/bin/sh -l
 
-OUTDIR=doc
+OUTDIR=docs
 mkdir -p ${OUTDIR}
 
 # for each specified output format
